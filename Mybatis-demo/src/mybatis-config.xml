@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<!-- 引用外部资源文件 -->
+	<properties resource="database.properties"></properties>
+	<!-- 表示只适用于手动映射，不加这个参数，表示适于自动映射和手动映射 -->
+	<!-- <settings>
+		<setting name="sutoMappingBehavior" value="NONE"/> 
+	</settings> -->
+	
+	<!-- 设置别名 -->
+	<typeAliases>
+		<typeAlias type="cn.kgc.pogo.Users"/>
+	</typeAliases>
+	
+	<!-- 数据库资源环境,可以有多个环境 不同的数据库连接 -->
+	<environments default="development">
+		<environment id="development">
+			<!-- 事务类型 -->
+			<transactionManager type="JDBC" />
+			<!-- 数据库连接参数JNDI 表示数据源来源于tomcat -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${user}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 读取dao接口映射文件 -->
+	<mappers>
+		<!-- <mapper resource="cn/kgc/Dao/UserDaoMapper.xml"/> -->
+		<mapper  class="cn.kgc.Dao.UsersDao" />
+	</mappers>
+</configuration>
